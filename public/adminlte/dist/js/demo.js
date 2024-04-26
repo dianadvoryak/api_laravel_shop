@@ -395,7 +395,7 @@
   var $text_sm_footer_container = $('<div />', { class: 'mb-4' }).append($text_sm_footer_checkbox).append('<span>Footer</span>')
   $container.append($text_sm_footer_container)
 
-  // Color Arrays
+  // Tag Arrays
 
   var navbar_dark_skins = [
     'navbar-primary',
@@ -540,7 +540,7 @@
 
   // Sidebar Colors
 
-  $container.append('<h6>Accent Color Variants</h6>')
+  $container.append('<h6>Accent Tag Variants</h6>')
   var $accent_variants = $('<div />', {
     class: 'd-flex'
   })

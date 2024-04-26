@@ -169,7 +169,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="pages/colors.html" class="nav-link">
+                        <a href="{{ route('color.index') }}" class="nav-link">
                             <i class="nav-icon far fa-image"></i>
                             <p>
                                 Сolors

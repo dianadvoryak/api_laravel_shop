@@ -5,7 +5,7 @@
 
 ( function( factory ) {
 	"use strict";
-	
+
 	if ( typeof define === "function" && define.amd ) {
 
 		// AMD. Register as an anonymous module.
@@ -1323,7 +1323,7 @@ var disableSelection = $.fn.extend( {
 
 
 
-// Create a local jQuery because jQuery Color relies on it and the
+// Create a local jQuery because jQuery Tag relies on it and the
 // global may not exist with AMD and a custom build (#10199).
 // This module is a noop if used as a regular AMD module.
 // eslint-disable-next-line no-unused-vars
@@ -1331,7 +1331,7 @@ var jQuery = $;
 
 
 /*!
- * jQuery Color Animations v2.2.0
+ * jQuery Tag Animations v2.2.0
  * https://github.com/jquery/jquery-color
  *
  * Copyright OpenJS Foundation and other contributors
@@ -1415,7 +1415,7 @@ var jQuery = $;
 			}
 		} ],
 
-	// jQuery.Color( )
+	// jQuery.Tag( )
 	color = jQuery.Color = function( color, green, blue, alpha ) {
 		return new jQuery.Color.fn.parse( color, green, blue, alpha );
 	},
@@ -1472,7 +1472,7 @@ var jQuery = $;
 	// element for support tests
 	supportElem = jQuery( "<p>" )[ 0 ],
 
-	// colors = jQuery.Color.names
+	// colors = jQuery.Tag.names
 	colors,
 
 	// local aliases of functions called often
