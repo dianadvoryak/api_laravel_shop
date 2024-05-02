@@ -7,7 +7,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProductResourse extends JsonResource
+class IndexProductResourse extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,8 +16,6 @@ class ProductResourse extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $products = Product::where('group_id', $this->group_id)->get();
-
         return [
             'id' => $this->id,
             'title' => $this->title,
@@ -28,7 +26,6 @@ class ProductResourse extends JsonResource
             'count' => $this->count,
             'is_published' => $this->is_published,
             'category' => new ColorResourse($this->category),
-            'group_products' => ProductMinResourse::collection($products),
         ];
     }
 }

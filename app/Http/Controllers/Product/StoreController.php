@@ -15,7 +15,11 @@ class StoreController extends Controller
     {
         $data = $request->validated();
 
-        $data['preview_image'] = Storage::disk('public')->put('/images', $data['preview_image']);
+        if (isset($data['preview_image'])){
+            $data['preview_image'] = Storage::disk('public')->put('/images', $data['preview_image']);
+        } else {
+            $data['preview_image'] = null;
+        }
 
         $tagsIds = $data['tags'] ?? null;
         $colorsIds = $data['colors'] ?? null;
@@ -25,18 +29,22 @@ class StoreController extends Controller
             'title' => $data['title'],
         ], $data);
 
-        foreach ($tagsIds as $tagsId) {
-            ProductTag::firstOrCreate([
-                'product_id' => $product->id,
-                'tag_id' => $tagsId
-            ]);
+        if (isset($tagsIds)) {
+            foreach ($tagsIds as $tagsId) {
+                ProductTag::firstOrCreate([
+                    'product_id' => $product->id,
+                    'tag_id' => $tagsId
+                ]);
+            }
         }
 
-        foreach ($colorsIds as $colorId) {
-            ColorProduct::firstOrCreate([
-                'product_id' => $product->id,
-                'color_id' => $colorId
-            ]);
+        if (isset($colorsIds)) {
+            foreach ($colorsIds as $colorId) {
+                ColorProduct::firstOrCreate([
+                    'product_id' => $product->id,
+                    'color_id' => $colorId
+                ]);
+            }
         }
 
         return redirect()->route('product.index');

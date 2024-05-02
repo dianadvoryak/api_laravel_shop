@@ -147,6 +147,14 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ route('group.index') }}" class="nav-link">
+                            <i class="nav-icon far fa-image"></i>
+                            <p>
+                                Groups
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ route('product.index') }}" class="nav-link">
                             <i class="nav-icon far fa-image"></i>
                             <p>

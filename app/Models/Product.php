@@ -19,4 +19,11 @@ class Product extends Model
     {
         return url('storage/' . $this->preview_image);
     }
+
+    public function colors()
+    {
+        return $this->belongsToMany(Color::class, 'color_products', 'product_id', 'color_id');
+    }
+
+
 }
