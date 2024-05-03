@@ -67,4 +67,4 @@ Route::group(['prefix' => 'groups'], function (){
 
 
 Route::get('/api/products', \App\Http\Controllers\API\Product\IndexController::class);
-Route::get('/products/{product}', \App\Http\Controllers\API\Product\ShowController::class);
+Route::get('/api/products/{product}', \App\Http\Controllers\API\Product\ShowController::class);

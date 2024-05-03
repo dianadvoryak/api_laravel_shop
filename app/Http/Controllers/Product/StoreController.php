@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\StoreRequest;
 use App\Models\ColorProduct;
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\ProductTag;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,6 +16,8 @@ class StoreController extends Controller
     {
         $data = $request->validated();
 
+        $productImages = $data['product_images'];
+
         if (isset($data['preview_image'])){
             $data['preview_image'] = Storage::disk('public')->put('/images', $data['preview_image']);
         } else {
@@ -23,7 +26,7 @@ class StoreController extends Controller
 
         $tagsIds = $data['tags'] ?? null;
         $colorsIds = $data['colors'] ?? null;
-        unset($data['tags'], $data['colors']);
+        unset($data['tags'], $data['colors'], $data['product_images']);
 
         $product = Product::firstOrCreate([
             'title' => $data['title'],
@@ -45,6 +48,16 @@ class StoreController extends Controller
                     'color_id' => $colorId
                 ]);
             }
+        }
+        foreach ($productImages as $productImage) {
+            $currentImagesCount = ProductImage::where('product_id', $product->id)->count();
+
+            if($currentImagesCount > 3) continue;
+            $filePath = Storage::disk('public')->put('/images', $productImage);
+            ProductImage::create([
+                'product_id' => $product->id,
+                'file_path' => $filePath,
+            ]);
         }
 
         return redirect()->route('product.index');
